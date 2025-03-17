@@ -59,7 +59,6 @@ function saveData() {
 }
 
 function deleteKassa(i) {
-    console.log(i)
     const data = JSON.parse(localStorage.getItem('data'))
     if (!data || data.length == 0) return dataScreen.textContent = ''
     data.splice(i, 1)
