@@ -34,6 +34,7 @@ function nalUpdate() {
 }
 
 function clearData() {
+    if (!confirm('Очистить всю историю?')) return
     localStorage.setItem('data', '[]')
     printData()
 }
@@ -57,11 +58,21 @@ function saveData() {
     printData()
 }
 
+function deleteKassa(i) {
+    console.log(i)
+    const data = JSON.parse(localStorage.getItem('data'))
+    if (!data || data.length == 0) return dataScreen.textContent = ''
+    data.splice(i, 1)
+    localStorage.setItem('data', JSON.stringify(data))
+    printData()
+}
+
 function printData() {
     const data = JSON.parse(localStorage.getItem('data'))
     if (!data || data.length == 0) return dataScreen.textContent = ''
     const dataText = []
-    for (const obj of data) {
+    for (const i in data) {
+        const obj = data[i]
         const k = obj.kassa
         const bn = obj.beznal
         const n = obj.nal
@@ -80,10 +91,11 @@ function printData() {
             `${date.getDate().toString().padStart(2, 0)}.${date.getMonth().toString().padStart(2, 0)}`,
             `Касса: ${k}${fkassa}`,
             `Зп: ${zp}${fdolg}`,
-            `Банк: ${fbank}`
+            `Банк: ${fbank}`,
+            `<button onclick="if(confirm('Удалить кассу?'))deleteKassa(${i})">Удалить</button>`
         ].join('\n'))
     }
-    dataScreen.textContent = dataText.join('\n\n')
+    dataScreen.innerHTML = dataText.join('\n\n')
 }
 
 function update() {
