@@ -16,9 +16,21 @@ const result = s('result')
 const dataScreen = s('data-screen')
 
 let currentData = {}
+let procent = localStorage.getItem('procent') || 0.5
+if (procent == 0.4) procentBtn.value = '40%'
 
-clearBtn.addEventListener('click', () => localStorage.setItem('data', '[]'))
-procentBtn.addEventListener('click', () => procentBtn.value == '50%'?procentBtn.value = '40%':procentBtn.value = '50%')
+clearBtn.addEventListener('click', () => { localStorage.setItem('data', '[]'); printData()})
+procentBtn.addEventListener('click', () => {
+    if (procent == 0.5) {
+        procentBtn.value = '40%'
+        procent = 0.4
+        localStorage.setItem('procent', 0.4)
+    } else {
+        procentBtn.value = '50%'
+        procent = 0.5
+        localStorage.setItem('procent', 0.5)
+    }
+})
 saveBtn.addEventListener('click', saveData)
 beznalBtn.addEventListener('click', beznalUpdate)
 nalBtn.addEventListener('click', nalUpdate)
@@ -36,7 +48,7 @@ function saveData() {
 
 function printData() {
     const data = JSON.parse(localStorage.getItem('data'))
-    if (!data || data.length == 0) return
+    if (!data || data.length == 0) return dataScreen.textContent = ''
     const dataText = []
     for (const obj of data) {
         const k = obj.kassa
@@ -116,20 +128,8 @@ function update() {
     nalUpdate()
 }
 
-// ===TEST===
-function test() {
-    kassa.value = 7400
-    nal.value = 2050
-    bankBeznal.value = 18700
-    bankNal.value = 0
-    dolg.value = 0
-    update()
-}
-// ===TEST===
-
 window.onload = () => {
     // setInterval(update, 100)
     update()
     printData()
-    test()
 }
