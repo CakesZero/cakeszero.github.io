@@ -146,7 +146,7 @@ function update() {
     result.textContent = [
         `Касса: ${k}${fkassa}`,
         `Зп: ${zp}${fdolg}`,
-        `Банк: ${fbank | 0}`
+        `Банк: ${fbank || 0}`
     ].join('\n')
 }
 
