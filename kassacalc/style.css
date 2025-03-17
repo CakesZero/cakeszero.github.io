@@ -4,11 +4,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.flex {
-    /* display: flex; */
-    /* justify-content: space-evenly; */
-}
-
 #form {
     width: 300px;
     margin: 20px auto;
@@ -37,12 +32,10 @@ body {
     border-radius: 10px;
 }
 
-label {
+input, label {
     display: block;
 }
-input {
-    display: block;
-}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
