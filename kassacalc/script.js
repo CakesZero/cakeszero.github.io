@@ -16,11 +16,29 @@ const result = s('result')
 const dataScreen = s('data-screen')
 
 let currentData = {}
-let procent = localStorage.getItem('procent') || 0.5
-if (procent == 0.4) procentBtn.value = '40%'
+let procent = 0.5
 
-clearBtn.addEventListener('click', () => { localStorage.setItem('data', '[]'); printData()})
-procentBtn.addEventListener('click', () => {
+saveBtn.addEventListener('click', saveData)
+beznalBtn.addEventListener('click', beznalUpdate)
+nalBtn.addEventListener('click', nalUpdate)
+updateBtn.addEventListener('click', () => (beznalUpdate(), nalUpdate(), update()))
+clearBtn.addEventListener('click', clearData)
+procentBtn.addEventListener('click', procentToggle)
+
+function beznalUpdate() {
+    beznal.value = Number(kassa.value) - Number(nal.value)
+}
+
+function nalUpdate() {
+    nal.value = Number(kassa.value) - Number(beznal.value)
+}
+
+function clearData() {
+    localStorage.setItem('data', '[]')
+    printData()
+}
+
+function procentToggle() {
     if (procent == 0.5) {
         procentBtn.value = '40%'
         procent = 0.4
@@ -30,14 +48,7 @@ procentBtn.addEventListener('click', () => {
         procent = 0.5
         localStorage.setItem('procent', 0.5)
     }
-})
-saveBtn.addEventListener('click', saveData)
-beznalBtn.addEventListener('click', beznalUpdate)
-nalBtn.addEventListener('click', nalUpdate)
-updateBtn.addEventListener('click', update)
-
-function beznalUpdate() { beznal.value = Number(kassa.value) - Number(nal.value) }
-function nalUpdate() { nal.value = Number(kassa.value) - Number(beznal.value) }
+}
 
 function saveData() {
     let data = JSON.parse(localStorage.getItem('data')) || []
@@ -76,13 +87,12 @@ function printData() {
 }
 
 function update() {
-    const k = Number(kassa.value)
-    const bn = Number(beznal.value)
-    const n = Number(nal.value)
-    const d = Number(dolg.value)
-    const Bbn = Number(bankBeznal.value)
+    const k = Number(kassa.value) || 0
+    const bn = Number(beznal.value) || 0
+    const n = Number(nal.value) || 0
+    const d = Number(dolg.value) || 0
+    const Bbn = Number(bankBeznal.value) || 0
     const Bn = Number(bankNal.value)
-    const procent = procentBtn.value.slice(0, 2)/100
 
     let zp = Math.floor(k*procent/50)*50
     let bn1 = bn + Bbn
@@ -103,6 +113,9 @@ function update() {
         } else d1 = 0
     }
 
+    // if (bn1 < 0) bn1 = 0
+    // if (n1 < 0) n1 = 0
+
     let fkassa = (bn&&n)?` (${bn}бн+${n}н)`:((bn==k)&&!n)?`бн`:(!bn&&(n==k))?`н`:''
     let fdolg = d1?` (${d1}долг)`:''
     let fbank = (bn1&&n1)?`${bn1}бн+${n1}н`:(bn1&&!n1)?`${bn1}бн`:(!bn1&&n1)?`${n1}н`:''
@@ -121,15 +134,16 @@ function update() {
     result.textContent = [
         `Касса: ${k}${fkassa}`,
         `Зп: ${zp}${fdolg}`,
-        `Банк: ${fbank}`
+        `Банк: ${fbank | 0}`
     ].join('\n')
-
-    beznalUpdate(),
-    nalUpdate()
 }
 
 window.onload = () => {
     // setInterval(update, 100)
     update()
     printData()
+    const p = localStorage.getItem('procent')
+    if (p) procent == p
+    if (procent == 0.4) procentBtn.value = '40%'
+    if (procent == 0.5) procentBtn.value = '50%'
 }
