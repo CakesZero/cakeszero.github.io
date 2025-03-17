@@ -41,11 +41,11 @@ function clearData() {
 
 function procentToggle() {
     if (procent == 0.5) {
-        procentBtn.value = '40%'
+        procentBtn.innerHTML = '40%'
         procent = 0.4
         localStorage.setItem('procent', 0.4)
     } else {
-        procentBtn.value = '50%'
+        procentBtn.innerHTML = '50%'
         procent = 0.5
         localStorage.setItem('procent', 0.5)
     }
@@ -60,7 +60,7 @@ function saveData() {
 
 function deleteKassa(i) {
     const data = JSON.parse(localStorage.getItem('data'))
-    if (!data || data.length == 0) return dataScreen.textContent = ''
+    if (!data || data.length == 0) return dataScreen.innerHTML = ''
     data.splice(i, 1)
     localStorage.setItem('data', JSON.stringify(data))
     printData()
@@ -68,7 +68,7 @@ function deleteKassa(i) {
 
 function printData() {
     const data = JSON.parse(localStorage.getItem('data'))
-    if (!data || data.length == 0) return dataScreen.textContent = ''
+    if (!data || data.length == 0) return dataScreen.innerHTML = ''
     const dataText = []
     for (const i in data) {
         const obj = data[i]
@@ -96,7 +96,7 @@ function printData() {
             '</div>'
         ].join('<br>'))
     }
-    dataScreen.innerHTML = dataText.join('<hr>')
+    dataScreen.innerHTML = dataText.join('')
 }
 
 function update() {
@@ -144,11 +144,11 @@ function update() {
         timestamp: Date.now()
     }
 
-    result.textContent = [
+    result.innerHTML = [
         `Касса: ${k}${fkassa}`,
         `Зп: ${zp}${fdolg}`,
         `Банк: ${fbank || 0}`
-    ].join('\n')
+    ].join('<br>\n')
 }
 
 window.onload = () => {
@@ -157,6 +157,7 @@ window.onload = () => {
     printData()
     const p = localStorage.getItem('procent')
     if (p) procent == p
-    if (procent == 0.4) procentBtn.value = '40%'
-    if (procent == 0.5) procentBtn.value = '50%'
+    if (procent == 0.4) procentBtn.innerHTML = '40%'
+    if (procent == 0.5) procentBtn.innerHTML = '50%'
+    result.onclick = () => navigator.clipboard.writeText(result.textContent)
 }

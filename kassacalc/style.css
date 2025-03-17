@@ -1,26 +1,48 @@
 body {
+    margin: 0;
+    padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .flex {
-    display: flex;
-    justify-content: space-evenly;
+    /* display: flex; */
+    /* justify-content: space-evenly; */
 }
 
 #form {
-    width: 200px;
+    width: 300px;
+    margin: 20px auto;
     padding: 20px;
     border: 1px solid #000;
     border-radius: 20px;
 }
 
-#data-screen {
-    width: 200px;
-    padding: 20px;
+#result {
+    margin: 10px 0;
+    padding: 10px;
     border: 1px solid #000;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
+#result:hover {
+    text-decoration: underline;
+}
+
+.data-screen-block {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    padding-top: 0;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+label {
+    display: block;
+}
+input {
+    display: block;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;

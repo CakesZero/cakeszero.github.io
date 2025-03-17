@@ -8,39 +8,39 @@
 </head>
 <body>
     <div class="flex">
-        <form id="form">
+        <div id="form">
             <label>
                 <span>Касса</span>
                 <input class="input" type="number" id="kassa">
-            </label><br>
+            </label>
             <label>
                 <span>Безнал</span>
                 <input class="input" type="number" id="beznal">
-                <input type="button" value="Расчитать" id="beznal-btn">
-            </label><br>
+                <button id="beznal-btn">Расчитать</button>
+            </label>
             <label>
                 <span>Нал</span>
                 <input class="input" type="number" id="nal">
-                <input type="button" value="Расчитать" id="nal-btn">
-            </label><br>
+                <button id="nal-btn">Расчитать</button>
+            </label>
             <label>
                 <span>Долг</span>
                 <input class="input" type="number" id="dolg">
-            </label><br>
+            </label>
             <label>
                 <span>Банк Безнал</span>
                 <input class="input" type="number" id="bank-beznal">
-            </label><br>
+            </label>
             <label>
                 <span>Банк Нал</span>
                 <input class="input" type="number" id="bank-nal">
-            </label><br>
-            <input type="button" value="%" id="procent-btn">
-            <input type="button" value="Расчитать" id="update-btn">
-            <input type="button" value="Сохранить" id="save-btn">
-            <input type="button" value="Очистить историю" id="clear-btn">
-            <pre id="result"></pre>
-        </form>
+            </label>
+            <button id="procent-btn">%</button>
+            <button id="update-btn">Расчитать</button>
+            <button id="save-btn">Сохранить</button>
+            <button id="clear-btn">Очистить историю</button>
+            <div id="result"></div>
+        </div>
         <div id="data-screen"></div>
     </div>
     <script src="script.js"></script>
