@@ -87,14 +87,16 @@ function printData() {
         let fbank = (bn1&&n1)?`${bn1}бн+${n1}н`:(bn1&&!n1)?`${bn1}бн`:(!bn1&&n1)?`${n1}н`:''
         
         dataText.push([
+            '<div class="data-screen-block">',
             `${date.getDate().toString().padStart(2, 0)}.${(date.getMonth() + 1).toString().padStart(2, 0)}`,
             `Касса: ${k}${fkassa}`,
             `Зп: ${zp}${fdolg}`,
             `Банк: ${fbank}`,
-            `<button onclick="if(confirm('Удалить кассу?'))deleteKassa(${i})">Удалить</button>`
-        ].join('\n'))
+            `<button onclick="if(confirm('Удалить кассу?'))deleteKassa(${i})">Удалить</button>`,
+            '</div>'
+        ].join('<br>'))
     }
-    dataScreen.innerHTML = dataText.join('\n\n')
+    dataScreen.innerHTML = dataText.join('<hr>')
 }
 
 function update() {
@@ -103,7 +105,7 @@ function update() {
     const n = Number(nal.value) || 0
     const d = Number(dolg.value) || 0
     const Bbn = Number(bankBeznal.value) || 0
-    const Bn = Number(bankNal.value)
+    const Bn = Number(bankNal.value) || 0
 
     let zp = Math.floor(k*procent/50)*50
     let bn1 = bn + Bbn
