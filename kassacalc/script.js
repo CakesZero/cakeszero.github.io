@@ -87,7 +87,7 @@ function printData() {
         let fbank = (bn1&&n1)?`${bn1}бн+${n1}н`:(bn1&&!n1)?`${bn1}бн`:(!bn1&&n1)?`${n1}н`:''
         
         dataText.push([
-            `${date.getDate().toString().padStart(2, 0)}.${date.getMonth().toString().padStart(2, 0)}`,
+            `${date.getDate().toString().padStart(2, 0)}.${(date.getMonth() + 1).toString().padStart(2, 0)}`,
             `Касса: ${k}${fkassa}`,
             `Зп: ${zp}${fdolg}`,
             `Банк: ${fbank}`,
