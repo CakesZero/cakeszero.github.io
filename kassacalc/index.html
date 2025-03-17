@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="form">
+        <label>
+            <span>Касса</span>
+            <input class="input" type="number" id="kassa">
+        </label><br>
+
+        <label>
+            <span>Безнал</span>
+            <input class="input" type="number" id="beznal">
+            <input type="button" value="Расчитать" id="beznal-btn">
+        </label><br>
+
+        <label>
+            <span>Нал</span>
+            <input class="input" type="number" id="nal">
+            <input type="button" value="Расчитать" id="nal-btn">
+        </label><br>
+
+        <label>
+            <span>Долг</span>
+            <input class="input" type="number" id="dolg">
+        </label><br>
+
+        <label>
+            <span>Банк Безнал</span>
+            <input class="input" type="number" id="bank-beznal">
+        </label><br>
+        
+        <label>
+            <span>Банк Нал</span>
+            <input class="input" type="number" id="bank-nal">
+        </label><br>
+
+        <input type="button" value="50%" id="procent-btn">
+        <input type="button" value="Расчитать" id="update-btn">
+        <input type="button" value="Сохранить" id="save-btn">
+        <input type="button" value="Очистить историю" id="clear-btn">
+    </form>
+    <pre id="result"></pre>
+    <pre id="data-screen"></pre>
+    <script src="script.js"></script>
+</body>
+</html>
